@@ -1,0 +1,140 @@
+(function (root) {
+  'use strict';
+
+  const dict = {
+    de: {
+      title: 'Arithmetische Codierung',
+      language: 'Sprache',
+      textLabel: 'Nachricht:',
+      textPlaceholder: 'Nachricht eingeben, z. B. ABRAKADABRA (höchstens 12 Zeichen)',
+      examples: 'Beispiele:',
+      examplePick: 'Beispiel wählen …',
+      ex1: 'ABRAKADABRA',
+      ex2: 'Verteilung wie auf der Folie (A 0.6, B 0.2, C 0.1, D 0.1)',
+      ex3: 'MISSISSIPPI',
+      ex4: 'ANANAS',
+      ex5: 'TOBEORNOT (6 verschiedene Zeichen)',
+      modeLabel: 'Modus:',
+      modeBuild: 'Selbst decodieren',
+      modeShow: 'Anzeigen',
+      prev: 'Zurück',
+      next: 'Weiter',
+      all: 'Ganzen Ablauf zeigen',
+      undo: 'Rückgängig',
+      auto: 'Automatisch vervollständigen',
+      reset: 'Neu beginnen',
+
+      taskTitle: 'Aufgabe',
+      tableChar: 'Zeichen',
+      tableCount: 'Anzahl',
+      tableProb: 'Wahrscheinlichkeit',
+      tableRange: 'Bereich',
+      numberLabel: 'Zahl',
+      lengthLabel: 'Länge der Nachricht',
+      lengthUnit: 'Zeichen',
+      rangeNote: 'Ein Bereich «[a; b)» enthält a, aber nicht mehr b.',
+      roundNote: 'Zahlen mit ≈ sind gerundet dargestellt. Intern wird exakt gerechnet.',
+      decodedSoFar: 'Bisher decodiert:',
+      strip: 'Zeichen {i}',
+
+      hintEmpty: 'Bitte eine Nachricht eingeben.',
+      errTooLong: 'Die Nachricht ist zu lang (höchstens {n} Zeichen).',
+      errTooMany: 'Zu viele verschiedene Zeichen (höchstens {n}).',
+      errTooFew: 'Bitte mindestens zwei verschiedene Zeichen eingeben.',
+      hintBuild: 'Zeichen {i} von {n}: In welchem Bereich liegt die Zahl {x}? Klicke den passenden Bereich an.',
+      hintShow: 'Mit «Weiter» wird das nächste Zeichen bestimmt. Die Zahl ist {x}.',
+      okBuild: 'Richtig: {x} liegt im Bereich von «{c}» [{a}; {b}). Das Intervall wird vergrößert.',
+      stepShow: 'Zeichen {i}: Die Zahl {x} liegt im Bereich von «{c}» [{a}; {b}).',
+      errChoice: 'Falsch: Der Bereich von «{c}» ist [{a}; {b}). Die Zahl {x} liegt {side} davon.',
+      left: 'links',
+      right: 'rechts',
+      done: 'Fertig: Die Nachricht ist {text}.',
+      allDone: 'Alle {n} Zeichen sind decodiert: {text}.',
+
+      encTitle: 'Codierung',
+      encShow: 'Codierung anzeigen',
+      encHint: 'Beim Codieren wird das Intervall mit jedem Zeichen auf den Bereich des Zeichens eingeengt. Als Zahl dient die kürzeste Dezimalzahl, die im Endintervall liegt.',
+      encStep: 'Schritt',
+      encLow: 'Untergrenze',
+      encHigh: 'Obergrenze',
+      encStart: 'Start',
+      encFinal: 'Endintervall: [{a}; {b})',
+      encNumber: 'Gewählte Zahl: {x} ({k} Nachkommastellen)',
+    },
+    en: {
+      title: 'Arithmetic Coding',
+      language: 'Language',
+      textLabel: 'Message:',
+      textPlaceholder: 'Enter message, e.g. ABRAKADABRA (at most 12 characters)',
+      examples: 'Examples:',
+      examplePick: 'Choose an example …',
+      ex1: 'ABRAKADABRA',
+      ex2: 'Distribution as on the slide (A 0.6, B 0.2, C 0.1, D 0.1)',
+      ex3: 'MISSISSIPPI',
+      ex4: 'ANANAS',
+      ex5: 'TOBEORNOT (6 different characters)',
+      modeLabel: 'Mode:',
+      modeBuild: 'Decode yourself',
+      modeShow: 'Show',
+      prev: 'Back',
+      next: 'Next',
+      all: 'Show whole process',
+      undo: 'Undo',
+      auto: 'Complete automatically',
+      reset: 'Start over',
+
+      taskTitle: 'Task',
+      tableChar: 'Character',
+      tableCount: 'Count',
+      tableProb: 'Probability',
+      tableRange: 'Range',
+      numberLabel: 'Number',
+      lengthLabel: 'Length of the message',
+      lengthUnit: 'characters',
+      rangeNote: 'A range «[a; b)» contains a, but no longer b.',
+      roundNote: 'Numbers with ≈ are shown rounded. Internally, calculations are exact.',
+      decodedSoFar: 'Decoded so far:',
+      strip: 'Character {i}',
+
+      hintEmpty: 'Please enter a message.',
+      errTooLong: 'The message is too long (at most {n} characters).',
+      errTooMany: 'Too many different characters (at most {n}).',
+      errTooFew: 'Please enter at least two different characters.',
+      hintBuild: 'Character {i} of {n}: Which range contains the number {x}? Click the matching range.',
+      hintShow: '«Next» determines the next character. The number is {x}.',
+      okBuild: 'Correct: {x} is in the range of «{c}» [{a}; {b}). The interval is enlarged.',
+      stepShow: 'Character {i}: The number {x} is in the range of «{c}» [{a}; {b}).',
+      errChoice: 'Wrong: The range of «{c}» is [{a}; {b}). The number {x} is to the {side} of it.',
+      left: 'left',
+      right: 'right',
+      done: 'Done: The message is {text}.',
+      allDone: 'All {n} characters are decoded: {text}.',
+
+      encTitle: 'Encoding',
+      encShow: 'Show encoding',
+      encHint: 'While encoding, each character narrows the interval to the range of that character. The number is the shortest decimal that lies inside the final interval.',
+      encStep: 'Step',
+      encLow: 'Lower bound',
+      encHigh: 'Upper bound',
+      encStart: 'Start',
+      encFinal: 'Final interval: [{a}; {b})',
+      encNumber: 'Chosen number: {x} ({k} decimal places)',
+    },
+  };
+
+  let lang = 'de';
+
+  function t(key, params) {
+    let s = (dict[lang] && dict[lang][key]) || dict.de[key] || key;
+    if (params) for (const k in params) s = s.split('{' + k + '}').join(params[k]);
+    return s;
+  }
+
+  const api = {
+    t,
+    setLang(l) { if (dict[l]) lang = l; },
+    getLang() { return lang; },
+  };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.I18n = api;
+})(typeof self !== 'undefined' ? self : this);
