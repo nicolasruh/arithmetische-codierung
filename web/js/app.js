@@ -11,7 +11,7 @@
   const el = {
     text: $('text'), lang: $('lang'), examples: $('examples'), message: $('message'),
     prev: $('prev'), next: $('next'), all: $('all'), undo: $('undo'), auto: $('auto'), reset: $('reset'),
-    model: $('model'), number: $('number'), length: $('length'), roundNote: $('roundNote'),
+    model: $('model'), number: $('number'), precision: $('precision'), length: $('length'), roundNote: $('roundNote'),
     decoded: $('decoded'), strips: $('strips'),
     showEnc: $('showEnc'), encBox: $('encBox'), encTable: $('encTable'), encFinal: $('encFinal'), encNumber: $('encNumber'),
   };
@@ -242,7 +242,7 @@
       });
 
       const xd = x0 + (x1 - x0) * A.ratio(xnum, st.lo, st.hi);
-      s.appendChild(svg('circle', { class: 'dot', cx: xd, cy: y + BOT - 6, r: 4 }));
+      if (decided) s.appendChild(svg('circle', { class: 'dot', cx: xd, cy: y + BOT - 6, r: 4 }));
 
       const rowText = t('strip', { i: r + 1 }) + (decided ? ' → ' + lab(st.subs[st.idx].char) : '');
       s.appendChild(svg('text', { class: 'rowlabel', x: x0, y: y + BOT + 24 }, rowText));
@@ -290,7 +290,8 @@
     el.reset.disabled = !has;
 
     el.number.textContent = has ? state.enc.number.text : '';
-    el.length.textContent = has ? `${total()} ${t('lengthUnit')}` : '';
+    el.length.textContent = has ? `(${total()} ${t('lengthUnit')})` : '';
+    el.precision.textContent = has ? t('precision', { k: state.enc.number.digits }) : '';
     document.getElementById('task').hidden = !has;
     el.message.textContent = state.msg ? t(state.msg.key, state.msg.params) : '';
     el.message.className = 'message ' + (state.msg ? state.msg.kind : '');
