@@ -25,7 +25,7 @@ button:disabled { background: #b8c2ce; cursor: default; }
 .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .head h2 { margin-bottom: 6px; }
 .sub { font-weight: normal; font-size: .95rem; }
-.note { margin: 0 0 8px; color: #44546a; }
+.note { margin: 14px 0 8px; color: #44546a; }
 
 .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 24px; }
 @media (max-width: 800px) { .two { grid-template-columns: minmax(0, 1fr); } }
